@@ -14,6 +14,15 @@ public class BudgetService
         {
             return 0;
         }
+
+        List<DateTimeBudget> budgets = _budgetRepo.GetAll()
+                                          .Select(b => new DateTimeBudget(b))
+                                          .OrderBy(b => b.YearMonth)
+                                          .ToList();
+        if (start > budgets.Last().YearMonth || end < budgets.First().YearMonth)
+        {
+            return 0;
+        } 
         return 310;
     }
 }
