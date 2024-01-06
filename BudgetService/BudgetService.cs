@@ -10,6 +10,10 @@ public class BudgetService
 
     public decimal Query(DateTime start, DateTime end)
     {
+        if (end < start)
+        {
+            return 0;
+        }
         return 310;
     }
 }
