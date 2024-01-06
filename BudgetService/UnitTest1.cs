@@ -105,4 +105,21 @@ public class Tests
         var result = service.Query(new DateTime(2024, 1, 31), new DateTime(2024, 2, 1));
         Assert.AreEqual(10+100, result);
     }
+    
+    // [Test]
+    // public void QueryCrossMonthsAndReturnBudget()
+    // {
+    //     _budgetRepo
+    //         .GetAll()
+    //         .Returns(new List<Budget>
+    //         {
+    //             new Budget("202401", 310),
+    //             new Budget("202402", 2900),
+    //             new Budget("202403", 6200)
+    //         });
+    //     var service = new BudgetService(_budgetRepo);
+    //
+    //     var result = service.Query(new DateTime(2024, 1, 31), new DateTime(2024, 3, 1));
+    //     Assert.AreEqual(10+2900+200, result);
+    // }
 }

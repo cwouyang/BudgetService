@@ -45,5 +45,15 @@ public class BudgetService
         var endAmount =  endBudget.Amount / endDayInMonth * ((end - endBudget.YearMonth).Days+1);
         return startAmount + endAmount;
     }
+
+    private bool IsFullMonth(DateTime start, DateTime end, DateTime time)
+    {
+        Assert.True(start <= time && time <= end);
+        if (start.Month < time.Month && time.Month < end.Month)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
