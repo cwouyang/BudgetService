@@ -57,6 +57,22 @@ public class Tests
         var result = service.Query(new DateTime(2024, 3, 1), new DateTime(2024, 3, 1));
         Assert.AreEqual(0, result);
     }
+    
+    [Test]
+    public void QuerySingleDayAndReturnPartialBudget()
+    {
+        _budgetRepo
+            .GetAll()
+            .Returns(new List<Budget>
+            {
+                new Budget("202401", 310),
+                new Budget("202402", 2900)
+            });
+        var service = new BudgetService(_budgetRepo);
+
+        var result = service.Query(new DateTime(2024, 1, 1), new DateTime(2024, 1, 1));
+        Assert.AreEqual(10, result);
+    }
     // [Test]
     // public void QueryCrossMonthAndReturnBudget()
     // {

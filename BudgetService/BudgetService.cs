@@ -22,7 +22,19 @@ public class BudgetService
         if (start > budgets.Last().YearMonth || end < budgets.First().YearMonth)
         {
             return 0;
-        } 
+        }
+
+        if (start.Year == end.Year && start.Month == end.Month)
+        {
+            var budget = budgets.FirstOrDefault(b => b.YearMonth == start);
+            if (budget == null)
+            {
+                return 0;
+            }
+
+            var dayInMonth = DateTime.DaysInMonth(budget.YearMonth.Year, budget.YearMonth.Month);
+            return budget.Amount / dayInMonth;
+        }
         return 310;
     }
 }
